@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of Employee Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f2f2f2; /* Background color added */
+        }
+
+        .sidebar {
+            height: 100%;
+            width: 200px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #333;
+            padding-top: 20px;
+        }
+
+        .sidebar a {
+            padding: 10px;
+            text-decoration: none;
+            color: white;
+            display: block;
+        }
+
+        .sidebar a:hover {
+            background-color: #555;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-left: 220px; /* Added margin-left to accommodate sidebar width */
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 10px;
+            margin: 20px;
+            background-color: #fff; /* Background color added */
+            border-radius: 10px; /* Rounded corners added */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow added for depth */
+        }
+
+        li {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px; /* Increased padding for better spacing */
+            margin-bottom: 20px; /* Increased margin for better separation */
+        }
+
+        li p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <a href="dashboard.html">Dashboard</a>
+        <div class="dropdown">
+            <a href="employee.html">Employee</a>
+            <div class="dropdown-content">
+                <a href="list.html">List Details</a>
+            </div>
+        </div>
+        <a href="contact.html">Contact</a>
+    </div>
+    <div class="container">
+        <h1>List of Employee Details</h1>
+        <ul id="employeeList">
+            <!-- Employee details will be displayed here -->
+        </ul>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Retrieve employee details from localStorage
+                const employeeDetails = JSON.parse(localStorage.getItem('employeeDetails')) || [];
+                const list = document.getElementById('employeeList');
+
+                // Loop through each employee detail and create list items
+                employeeDetails.forEach(function (employee, index) {
+                    const listItem = document.createElement('li');
+                    listItem.innerHTML = `
+                        <p><strong>Name:</strong> ${employee.name}</p>
+                        <p><strong>Mobile:</strong> ${employee.mobile}</p>
+                        <p><strong>Address:</strong> ${employee.address}</p>
+                        <p><strong>Password:</strong> ${employee.password}</p>
+                        <p><strong>Date of Birth:</strong> ${employee.dob}</p>
+                        <p><strong>Email:</strong> ${employee.email}</p>
+                        <p><strong>Company Name:</strong> ${employee.companyName}</p>
+                        <p><strong>Company Mobile:</strong> ${employee.companyMobile}</p>
+                        <p><strong>Employee ID:</strong> ${employee.employeeId}</p>
+                        <p><strong>Department:</strong> ${employee.department}</p>
+                        <p><strong>Date of Joining:</strong> ${employee.dateOfJoining}</p>
+                        <p><strong>Designation:</strong> ${employee.designation}</p>
+                        <p><strong>Company Password:</strong> ${employee.companyPassword}</p>
+                        <p><strong>Company Email:</strong> ${employee.companyEmail}</p>
+                    `;
+                    list.appendChild(listItem);
+                });
+            });
+        </script>
+    </div>
+</body>
+
+</html>

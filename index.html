@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Common styles for both sidebar and content */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden; /* Hide overflowing content */
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Styles for sidebar */
+        .sidebar {
+            background-color: #333;
+            padding-top: 20px;
+            position: fixed;
+            top: 0;
+            left: -200px; /* Initially hide sidebar */
+            height: 100%;
+            width: 200px;
+            overflow-y: auto;
+            transition: left 0.3s ease; /* Add transition for smooth animation */
+        }
+
+        .sidebar a {
+            padding: 10px;
+            text-decoration: none;
+            color: white;
+            display: block;
+        }
+
+        .sidebar a:hover {
+            background-color: #555;
+        }
+
+        .dropdown-content {
+            display: none;
+            background-color: #333;
+            padding-left: 20px;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Styles for container/content */
+        .content {
+            margin-left: 0; /* Adjusted based on sidebar */
+        }
+
+        /* Media query for responsive design */
+        @media only screen and (max-width: 600px) {
+            .sidebar {
+                width: 100%;
+                position: relative;
+                left: 0; /* Show sidebar */
+                height: auto;
+                margin-bottom: 20px;
+                padding-top: 0;
+                overflow-y: visible;
+            }
+        }
+
+        /* Animation for showing sidebar */
+        @keyframes slideIn {
+            from {
+                left: -200px; /* Initially hidden position */
+            }
+            to {
+                left: 0; /* Visible position */
+            }
+        }
+
+        /* Animation for hiding sidebar */
+        @keyframes slideOut {
+            from {
+                left: 0; /* Visible position */
+            }
+            to {
+                left: -200px; /* Hidden position */
+            }
+        }
+
+        /* Class to control sidebar animation */
+        .sidebar-active {
+            animation: slideIn 0.3s ease forwards; /* Slide in animation */
+        }
+
+        .sidebar-inactive {
+            animation: slideOut 0.3s ease forwards; /* Slide out animation */
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="sidebar sidebar-inactive">
+        <a href="dashboard.html">Dashboard</a>
+        <div class="dropdown">
+            <a href="employee.html">Employee</a>
+            <div class="dropdown-content">
+                <a href="list.html">List Details</a>
+            </div>
+        </div>
+        <a href="contact.html">Contact</a>
+    </div>
+
+    <div class="container">
+        <h1>Dashboard</h1>
+        <div class="stats">
+            <div class="stat">
+                <h2>Total Employees</h2>
+                <p>100</p>
+            </div>
+            <div class="stat">
+                <h2>Active Employees</h2>
+                <p>80</p>
+            </div>
+            <div class="stat">
+                <h2>Inactive Employees</h2>
+                <p>20</p>
+            </div>
+        </div>
+        <div class="chart"></div>
+    </div>
+    <script>
+        // Toggle sidebar animation
+        document.querySelector('.container').addEventListener('click', function () {
+            document.querySelector('.sidebar').classList.toggle('sidebar-active');
+            document.querySelector('.sidebar').classList.toggle('sidebar-inactive');
+        });
+    </script>
+</body>
+
+</html>
